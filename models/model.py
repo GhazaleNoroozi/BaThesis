@@ -2,9 +2,16 @@ import config
 import pandas as pd
 import numpy as np
 import math
+from mlxtend.evaluate import bias_variance_decomp
+
+mse1 = 0
+bias1 = 0
+var1 = 0
+count1 = 0
 
 
 class Model:
+
     def reshape_to_df(self, X, y):
         ly = []
         for i in y.values:
@@ -53,3 +60,22 @@ class Model:
         rmse = int(rmse * 10000)
         rmse = rmse / 100
         return rmse, mape
+
+    def print_bias_variance(self, model, X_train, y_train, X_test, y_test, geo_id):
+        mse, bias, var = bias_variance_decomp(model, X_train, y_train, X_test, y_test,
+                                              loss='mse', num_rounds=200, random_seed=1)
+
+        print("Bias Variance Calculations")
+        print('MSE : %.3f' % mse)
+        print('Bias: %.3f' % bias)
+        print('Var : %.3f' % var)
+
+        f = open('/Trend/RF_EBV.csv', 'a')
+        f.write(geo_id + f',{"{:.2f}".format(mse)},{"{:.2f}".format(bias)},{"{:.2f}".format(var)}\n')
+        f.close()
+
+        global mse1, bias1, var1, count1
+        mse1 += mse
+        bias1 += bias
+        var1 += var
+        count1 += 1

@@ -1,4 +1,4 @@
-x`dateRep,day,month,year,cases,deaths,countriesAndTerritories,geoId,countryterritoryCode,popData2020,continentExp
+dateRep,day,month,year,cases,deaths,countriesAndTerritories,geoId,countryterritoryCode,popData2020,continentExp
 14/10/2021,14,10,2021,2719,11,Austria,AT,AUT,8901064,Europe
 13/10/2021,13,10,2021,1420,8,Austria,AT,AUT,8901064,Europe
 12/10/2021,12,10,2021,1209,14,Austria,AT,AUT,8901064,Europe
